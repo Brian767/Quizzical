@@ -1,5 +1,6 @@
 import React from "react";
 import { nanoid } from "nanoid";
+import he from "he"
 
 export default function QuizScreen() {
   const [quizData, setQuizData] = React.useState(null);
@@ -15,10 +16,10 @@ export default function QuizScreen() {
   const quizElements = quizData?.results.map((question, index) => {
     return (
       <section className="question" key={index}>
-        <h2>{question.question}</h2>
+        <h2>{he.decode(question.question)}</h2>
         <section className="answers">
           <label>
-            {question.correct_answer}
+            {he.decode(question.correct_answer)}
             <input
               type="radio"
               name="answer"
@@ -28,32 +29,32 @@ export default function QuizScreen() {
           </label>
 
           <label>
-            {question.incorrect_answers[0]}
+            {he.decode(question.incorrect_answers[0])}
             <input
               type="radio"
               name="answer"
               className="radio"
-              value={question.incorrect_answers[0]}
+              value={he.decode(question.incorrect_answers[0])}
             />
           </label>
 
           <label>
-            {question.incorrect_answers[1]}
+            {he.decode(question.incorrect_answers[1])}
             <input
               type="radio"
               name="answer"
               className="radio"
-              value={question.incorrect_answers[1]}
+              value={he.decode(question.incorrect_answers[1])}
             />
           </label>
 
           <label>
-            {question.incorrect_answers[2]}
+            {he.decode(question.incorrect_answers[2])}
             <input
               type="radio"
               name="answer"
               className="radio"
-              value={question.incorrect_answers[2]}
+              value={he.decode(question.incorrect_answers[2])}
             />
           </label>
         </section>
