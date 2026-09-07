@@ -46,7 +46,7 @@ export default function QuizScreen() {
             {he.decode(answersArr[0])}
             <input
               type="radio"
-              name="answer"
+              name={`question-${index}`}
               className="radio"
               value={answersArr[0]}
             />
@@ -56,7 +56,7 @@ export default function QuizScreen() {
             {he.decode(answersArr[1])}
             <input
               type="radio"
-              name="answer"
+              name={`question-${index}`}
               className="radio"
               value={he.decode(answersArr[1])}
             />
@@ -66,7 +66,7 @@ export default function QuizScreen() {
             {he.decode(answersArr[2])}
             <input
               type="radio"
-              name="answer"
+              name={`question-${index}`}
               className="radio"
               value={he.decode(answersArr[2])}
             />
@@ -76,7 +76,7 @@ export default function QuizScreen() {
             {he.decode(answersArr[3])}
             <input
               type="radio"
-              name="answer"
+              name={`question-${index}`}
               className="radio"
               value={he.decode(answersArr[3])}
             />

@@ -142,6 +142,11 @@ form{
   border-color: #646cff;
 }
 
+.question label:has(input:checked) {
+  background: #646cff;
+  color: white;
+  border-color: #646cff;
+}
 .quiz-btn{
   border: none;
   background:#4D5B9E ;
