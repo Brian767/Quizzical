@@ -89,6 +89,8 @@ main .start-btn {
 form {
   max-width: 400px;
   text-align: start;
+  display: flex;
+  flex-direction: column;
 }
 
 .question {
@@ -145,5 +147,5 @@ form {
   font-size: 0.6875rem;
   border-radius: 10px;
   padding: 1em 2em;
-  margin-top: 1.9em;
+  margin: 1.9em auto 0 auto;
 }
