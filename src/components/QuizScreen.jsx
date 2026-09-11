@@ -1,9 +1,11 @@
 import React from "react";
 import he from "he";
+import clsx from "clsx";
 
 export default function QuizScreen() {
   const [quizData, setQuizData] = React.useState(null);
-  const [guesses, setGuesses] = React.useState([]);
+  const [guesses, setGuesses] = React.useState({});
+  const [submitted, setSubmitted] = React.useState(false);
 
   React.useEffect(() => {
     fetch(
@@ -58,14 +60,25 @@ export default function QuizScreen() {
         <h2>{he.decode(question.question)}</h2>
         <section className="answers">
           {question.answers.map((answer) => {
+            const guessedAnswer = guesses[`question-${index}`];
+            const isCorrect = answer === question.correct_answer;
+            const isGuessed = answer === guessedAnswer;
+            const notGuessed = answer !== guessedAnswer;
+
+            const classList = clsx({
+              right: submitted && isCorrect,
+              wrong: submitted && isGuessed && !isCorrect,
+              notGuessed: submitted && notGuessed && !isCorrect,
+            });
+
             return (
-              <label>
+              <label key={answer} className={classList}>
                 {he.decode(answer)}
                 <input
                   type="radio"
                   name={`question-${index}`}
                   className="radio"
-                  value={he.decode(answer)}
+                  value={answer}
                 />
               </label>
             );
@@ -76,19 +89,29 @@ export default function QuizScreen() {
   });
 
   function checkAnswers(formData) {
-    console.log(formData);
     const answers = Object.fromEntries(formData);
     setGuesses(answers);
-    console.log(guesses);
+    setSubmitted(true);
   }
+
+  const score = quizData?.results.filter((question, index) => {
+    return guesses[`question-${index}`] === question.correct_answer;
+  }).length;
 
   return (
     <main className="quiz">
       <form action={checkAnswers}>
         {quizElements}
-        <button type="submit" className="quiz-btn">
-          Check answers
-        </button>
+        <div className="scoreAndButton">
+          {submitted && (
+            <p>
+              You scored {score}/{quizData.results.length} correct answers
+            </p>
+          )}
+          <button type="submit" className="quiz-btn">
+            {submitted ? "Play again" : "Check answers"}
+          </button>
+        </div>
       </form>
     </main>
   );

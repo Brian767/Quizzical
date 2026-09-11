@@ -147,5 +147,34 @@ form {
   font-size: 0.6875rem;
   border-radius: 10px;
   padding: 1em 2em;
-  margin: 1.9em auto 0 auto;
+  min-width: 105px;
+}
+
+.scoreAndButton{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1.2em;
+  gap: 1em;
+}
+.scoreAndButton p{
+  font-size: .82rem;
+  font-weight: 700;
+  color: #293264;
+}
+
+.question label.right{
+  background-color: #94D7A2;
+  border: none;
+}
+
+.question label.wrong{
+  background-color: #F8BCBC;
+  border: none;
+  opacity: 50%;
+}
+
+.question label.notGuessed{
+  opacity: 50%;
+
 }
