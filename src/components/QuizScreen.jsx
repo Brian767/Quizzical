@@ -7,7 +7,7 @@ export default function QuizScreen() {
   const [guesses, setGuesses] = React.useState({});
   const [submitted, setSubmitted] = React.useState(false);
 
-  React.useEffect(() => {
+  function getQuiz() {
     fetch(
       "https://opentdb.com/api.php?amount=5&category=21&difficulty=medium&type=multiple",
     )
@@ -31,6 +31,9 @@ export default function QuizScreen() {
           results: shuffledQuestions,
         });
       });
+  }
+  React.useEffect(() => {
+    getQuiz()
   }, []);
 
   // Source - https://stackoverflow.com/a/2450976
@@ -75,6 +78,7 @@ export default function QuizScreen() {
               <label key={answer} className={classList}>
                 {he.decode(answer)}
                 <input
+                  disabled={submitted}
                   type="radio"
                   name={`question-${index}`}
                   className="radio"
@@ -89,6 +93,13 @@ export default function QuizScreen() {
   });
 
   function checkAnswers(formData) {
+    if (submitted) {
+      setQuizData(null);
+      setGuesses({});
+      setSubmitted(false);
+      getQuiz();
+      return;
+    }
     const answers = Object.fromEntries(formData);
     setGuesses(answers);
     setSubmitted(true);

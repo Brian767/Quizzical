@@ -127,7 +127,6 @@ form {
   border-radius: 8px;
   cursor: pointer;
   text-align: center;
-  
 }
 
 .question label:hover {
@@ -140,6 +139,9 @@ form {
   border: none;
 }
 
+.question label:has(input:disabled) {
+  cursor: not-allowed;
+}
 .quiz-btn {
   border: none;
   background: #4d5b9e;
@@ -150,31 +152,30 @@ form {
   min-width: 105px;
 }
 
-.scoreAndButton{
+.scoreAndButton {
   display: flex;
   justify-content: center;
   align-items: center;
   margin-top: 1.2em;
   gap: 1em;
 }
-.scoreAndButton p{
-  font-size: .82rem;
+.scoreAndButton p {
+  font-size: 0.82rem;
   font-weight: 700;
   color: #293264;
 }
 
-.question label.right{
-  background-color: #94D7A2;
+.question label.right {
+  background-color: #94d7a2;
   border: none;
 }
 
-.question label.wrong{
-  background-color: #F8BCBC;
+.question label.wrong {
+  background-color: #f8bcbc;
   border: none;
   opacity: 50%;
 }
 
-.question label.notGuessed{
+.question label.notGuessed {
   opacity: 50%;
-
 }
