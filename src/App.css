@@ -122,11 +122,11 @@ form {
 
 .question label {
   padding: 0.25em 10px;
-  min-width: 30px;
   border: 1px solid #4d5b9e;
   border-radius: 8px;
   cursor: pointer;
   text-align: center;
+
 }
 
 .question label:hover {

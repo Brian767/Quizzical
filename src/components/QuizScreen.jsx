@@ -83,6 +83,7 @@ export default function QuizScreen() {
                   name={`question-${index}`}
                   className="radio"
                   value={answer}
+                  required
                 />
               </label>
             );
